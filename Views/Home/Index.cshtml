@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1> Demo Project</h1>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            SaveItem();
+        });
+    });
+    function ResetItem() {
+        $('ProductId').val("");
+        $('ProductName').val("");
+        $('UnitPrice').val("");
+        $('UnitsInStock').val("");
+        $('DeliveryOn').val("");
+
+    }
+
+    function SaveItem() {
+        var formData = new formData
+        forData.append("ProductId", $('ProductId').val());
+        forData.append("ProductName", $('ProductName').val());
+        forData.append("UnitPrice", $('UnitPrice').val());
+        forData.append("UnitsInStock", $('UnitsInStock').val());
+        forData.append("DeliveryOn", $('DeliveryOn').val());
+        $.ajax({
+            async: true,
+            dataType: 'JSON',
+            type: 'POST',
+            contentType: false,
+            processData:false,
+            url: '/Item/Index',
+            data: formData,
+            success: function (data) {
+                alert(data);
+            },
+            error: function () {
+                alert("Something went wrong");
+            }
+        });
+    }
+</script>
+
